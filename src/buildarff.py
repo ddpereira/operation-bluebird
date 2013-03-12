@@ -40,7 +40,7 @@ def featureFunctions():
 def extraFunctions():
     return [] 
   
-    #return {'emoticons': get_emoticons, 'retweet': get_retweets}
+    #return {'newname':new_function, ... etc}
 
 
 #FEATURE DEFINITIONS
@@ -156,11 +156,11 @@ def get_avg_sent_lens(tw):
 
 def get_avgTokLen(tw):
     #Find all tagged tokens that are not punctuation
+    
     pattern = '\/[\w]+'
     temp = re.sub(pattern, '', tw)
     
     matches = re.findall('[\w]+', temp)
-
 
     #Sum of the list of token lengths / total tokens 
     res = 0
@@ -172,37 +172,6 @@ def get_sent_count(tw):
     s = tw.split('\n')    
    
     return len(s)
-
-def get_retweets(tw):
-    #Assuming that a tweet starting with a noun is a retweet or reply,
-    #we can count the number of times a twit replies or retweets
-      
-    pattern = '^[\w]+/NN\s'
-    m = re.findall('^[\w]+/NN\s', tw)
-    
-    rt = 'N'
-    
-    if len(m) > 0: rt = 'Y'
-    
-    return rt
-    
-def get_emoticons(tw):
-     
-    #All tokens are separated, so a decent emoticon-detector for this file\
-    #should look for instances of 2 or more pos-tagged non-word characters 
-    #in a row. This will find ':)' or ':-(' etc. but will also include 
-    #'. .' or ': "'
-    
-    pattern = '(\W\/[\w]+\s)+?(\W\/[\w]+\s)+?(\W\/[\w]+\s)*'
-    
-    m = re.findall(pattern, tw)
-    
-    em = 'N'
-    
-    if len(m) > 0: em = 'Y'
-    
-    
-    return em
     
 if (len(sys.argv) < 3) or (sys.argv[1].startswith('-') and len(sys.argv) < 3):
     print 'Usage: ' + sys.argv[0] + ' [-limit] class1 .. classN outputfile'
@@ -296,11 +265,7 @@ else:
 
                 arff = arff + ','.join(line) + ',' + classname + '\n'
                 
-                #print d
-                #print line                      
-                #if (sum(tw['stats']['numSents']) > 0):
-                    #print tw['stats']
-                
+                               
                 count = count + 1
                 
             file.close()
@@ -313,11 +278,4 @@ else:
     
     f.close()
     
-        
-#SOURCES:
-
-#emoticons: http://www.textfiles.commas/humor/commasPUTER/emoticon.txt
-    
-    
       
-
