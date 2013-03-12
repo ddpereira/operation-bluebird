@@ -4,7 +4,7 @@ import NLPlib
        
 def process(filename):
     
-    f = open('/u/cs401/A1/tweets/' + filename, 'r')
+    f = open(filename, 'r')
     
     #Separate the tweets, which are stored one per line 
     text = f.read().split('\n')
@@ -100,8 +100,8 @@ def stripHtml(text):
 
 def markBoundaries(text):
     #Naive boundary marker; does not account for sentences ending in abbrevs
-    abbrevs1 = open('/u/cs401/Wordlists/abbrev.english', 'r').read()    
-    abbrevs2 = open('/u/cs401/Wordlists/pn_abbrev.english', 'r').read()
+    abbrevs1 = open('abbrev.english', 'r').read()    
+    abbrevs2 = open('pn_abbrev.english', 'r').read()
 
     abbrevs12 = abbrevs1 + '\n' + abbrevs2
 
