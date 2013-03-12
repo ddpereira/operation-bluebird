@@ -1,3 +1,11 @@
+#---------------------------------------------------------------------
+#
+#  Author: D. Pereira
+#
+#=====================================================================
+
+
+
 import sys
 import re
 
@@ -18,8 +26,7 @@ def featureType(feat):
             'dashes':'numeric', 'parens':'numeric', 'ellipses':
             'numeric', 'comm_nouns':'numeric', 'prop_nouns':'numeric',
             'adverbs':'numeric', 'wh_words':'numeric', 'avg_tok_lens':
-            'numeric', 'avg_sent_lens':'numeric', 'numSents':'numeric',
-            'emoticons':'{Y, N}', 'retweet':'{Y, N}'} 
+            'numeric', 'avg_sent_lens':'numeric', 'numSents':'numeric'} 
     
     return types[feat]
 
@@ -129,7 +136,11 @@ def get_wh_words(tw):
     return len(matches)
 
 def get_slangs(tw):
-    slwords = '|'.join('smh, fwb, lmfao, lmao, lms, tbh, ro, wtf, bff, wyd, lylc, brb, atm, imao, sml, btw,bw, imho, fyi, ppl, sob, ttyl, imo, ltr, thx, kk, omg, ttys, afn, bbs, cya, ez, f2f, gtr, ic, jk, k, ly, ya, nm, np, plz, ru, so, tc, tmi, ym, ur, u, sol'.split(', '))
+    slwords = '|'.join('smh, fwb, lmfao, lmao, lms, tbh, ro, \
+    wtf, bff, wyd, lylc, brb, atm, imao, sml, btw,bw, imho, \
+    fyi, ppl, sob, ttyl, imo, ltr, thx, kk, omg, ttys, afn, \
+    bbs, cya, ez, f2f, gtr, ic, jk, k, ly, ya, nm, np, plz, \
+    ru, so, tc, tmi, ym, ur, u, sol'.split(', '))
     
     pattern = '\s(' + slwords + ')\s'
     matches = re.findall(pattern, tw, re.IGNORECASE)
